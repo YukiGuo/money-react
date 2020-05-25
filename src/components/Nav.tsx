@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import React from 'react';
+import x from 'icons/money.svg';
 
+console.log(x);
 const NavWrapper = styled.div`
 display:flex;
 justify-content: center;
@@ -25,6 +27,7 @@ return(
     <NavWrapper>
     <ul>
         <li>
+            <img src={x} className='icon' />
             <Link to="/money">记账</Link>
         </li>
         <li>
