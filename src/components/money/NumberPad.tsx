@@ -11,7 +11,14 @@ margin-top: 6px;
       background-color: white;
      border: none;
       font-size: 16px;
-      border: 0.5px solid red;
+      border: 0.5px solid #ccc;
+      &.ok{
+         height: 100px;
+         float: right;
+      }
+         &.zero {
+                    width: 50%;
+                }
 }
 `;
 const OutPut = styled.div`
@@ -35,10 +42,11 @@ function NumberPad() {
         <button>7</button>
         <button>8</button>
         <button>9</button>
+        <button className="ok">ok</button>
         <button>0</button>
         <button>.</button>
-        <button></button>
-        <button>ok</button>
+        <button>%</button>
+
     </PadWrapper>;
 }
 
