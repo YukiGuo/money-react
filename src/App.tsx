@@ -4,27 +4,13 @@ import {
     HashRouter as Router,
     Switch,
     Route,
-    Link,
     Redirect
 } from 'react-router-dom';
-import Nav from 'components/Nav';
-import styled from 'styled-components';
-
-const Wrapper = styled.div`
-height: 100vh;
-display: flex;
-flex-direction: column;
-`;
-const Main = styled.div`
-flex-grow: 1;
-overflow: auto;
-`;
+import Layout from 'components/Layout';
 
 function App() {
     return (
         <Router>
-            <Wrapper>
-                    <Main>
                         <Switch>
                             <Route path="/money">
                                 <Money/>
@@ -35,31 +21,49 @@ function App() {
                             <Route path="/statistics">
                                 <Statistics/>
                             </Route>
+                            <Route path="/bill">
+                                <Bill/>
+                            </Route>
                             <Redirect exact from ='/' to='/money' />
                             <Route path="*">
                                 <UnFound/>
                              </Route>
                         </Switch>
-                    </Main>
-                    <Nav/>
-            </Wrapper>
         </Router>
     );
 }
 
 function Statistics() {
-    return <h2>Home</h2>;
+    return (
+        <Layout>
+            <h2>Statistics</h2>
+        </Layout>
+    );
 }
 
 function Money() {
-    return <h2>About</h2>;
-}
 
+    return (
+        <Layout>
+            <h2>Money</h2>
+        </Layout>
+    )
+}
 function Tags() {
-    return <h2>Users</h2>;
+    return (
+        <Layout>
+            <h2>Tags</h2>
+        </Layout>
+    )
 }
 function UnFound() {
     return <h4>该页面不存在</h4>;
 }
-
+function Bill() {
+    return (
+        <Layout>
+            <h2>Bill</h2>
+        </Layout>
+    )
+}
 export default App;
