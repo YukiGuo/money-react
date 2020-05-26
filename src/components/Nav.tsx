@@ -1,11 +1,9 @@
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import React from 'react';
-
 import Icon from './Icon';
 
-
-require ('icons/tag.svg')
+require('icons/tag.svg');
 const NavWrapper = styled.div`
 display:flex;
 justify-content: center;
@@ -18,33 +16,41 @@ box-shadow:0 0 3px rgba(0,0,0,0.25);
  flex-direction: column;
  width: 25%;
  align-items: center;
+ justify-content: space-around;
  text-align: center;
- padding:14px;
+ padding:8px;
+ color: #333;
+ >span{
+ margin-top: 6px;
+ }
+ &.selected{
+ color: #1296db;
+ }
  }
 `;
+
 function Nav() {
-return(
-    <NavWrapper>
-            <Link to="/money" className="item">
+    return (
+        <NavWrapper>
+            <NavLink to="/money" className="item" activeClassName="selected">
                 <Icon name="money"/>
                 <span>记账</span>
-            </Link>
+            </NavLink>
 
-            <Link to="/tags" className="item">
+            <NavLink to="/tags" className="item" activeClassName="selected">
                 <Icon name="tag"/>
                 <span>标签</span>
-            </Link>
-        <Link to="/bill" className="item">
-            <Icon name="bill"/>
-            <span>账单</span>
-        </Link>
-            <Link to="/statistics" className="item">
+            </NavLink>
+            <NavLink to="/bill" className="item" activeClassName="selected">
+                <Icon name="bill"/>
+                <span>账单</span>
+            </NavLink>
+            <NavLink to="/statistics" className="item" activeClassName="selected">
                 <Icon name="statistics"/>
                 <span>统计</span>
-            </Link>
-
-
-    </NavWrapper>
-)
+            </NavLink>
+        </NavWrapper>
+    );
 }
+
 export default Nav;

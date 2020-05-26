@@ -355,10 +355,15 @@ module.exports = function(webpackEnv) {
               test: /\.svg$/,
               use: [
                 { loader: 'svg-sprite-loader', options: {} },
-                {loader: 'svgo-loader', options: {}
+                {loader: 'svgo-loader', options: {
+                  plugins:[
+                    {removeAttrs:{attrs: 'fill'}}
+                  ]
+                  }
                 }
               ]
             },
+
             {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
               loader: require.resolve('url-loader'),
