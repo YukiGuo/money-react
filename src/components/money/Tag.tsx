@@ -61,7 +61,7 @@ const Tag:React.FC=()=> {
     const createTag = ()=>{
        const newTag=  window.prompt("新增的标签名：");
        if(newTag!==null){
-           if(newTag==''){
+           if(newTag===''){
                alert('标签名不能为空！')
            }else {
                if (tags.indexOf(newTag) < 0) {
