@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { generateOutput } from './generateOutput';
+import {generateOutput} from './generateOutput';
 
 const PadWrapper = styled.div`
 margin-top: 6px;
@@ -29,25 +29,32 @@ const OutPut = styled.div`
             text-align: right;
             border: 1px #ccc solid;
 `;
-
-function NumberPad() {
-    const [output, _setOutput] = useState<string>('0');
-    const setOutput=(output: string)=>{
-        if(output.length>16){
-        output=output.slice(0,16)
-    }else if(output.length===0){
-           output='0'
+type Props = {
+   selected: number;
+    onChange: (amount: number) => void
+}
+const NumberPad: React.FC<Props> = (props) => {
+    const output = props.selected.toString();
+    console.log(props.selected);
+    let value :string;
+    const setOutput = (output: string) => {
+        if (output.length > 16) {
+            value = output.slice(0, 16);
+        } else if (output.length === 0) {
+            value = '0';
+        } else {
+            value=output
         }
-        _setOutput(output)
+        props.onChange(parseFloat(value));
     };
     const x = (e: React.MouseEvent) => {
-        console.log(output.length);
         const text = (e.target as HTMLButtonElement).textContent;
-     if (text===null) return;
-     if(text==='ok'){}
-     if(('0123456789.'.split('').concat(['清空','删除'])).indexOf(text)>=0){
-         setOutput(generateOutput(text,output))
-     }
+        if (text === null) return;
+        if (text === 'ok') {
+        }
+        if (('0123456789.'.split('').concat(['清空', '删除'])).indexOf(text) >= 0) {
+            setOutput(generateOutput(text, output));
+        }
     };
 
     return <PadWrapper>
@@ -70,6 +77,6 @@ function NumberPad() {
             <button>.</button>
         </div>
     </PadWrapper>;
-}
+};
 
 export default NumberPad;

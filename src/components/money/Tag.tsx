@@ -55,9 +55,13 @@ const TagWrapper=styled.div`
 
         }
 `;
-const Tag:React.FC=()=> {
+type Props ={
+    selected: string[];
+    onChange:(selected:string[])=>void;
+}
+const Tag:React.FC<Props>=(props)=> {
     const [tags,setTags]=useState<string[]>(['衣','食','住','行']);
-    const [selectedTags,setSelectedTags]=useState<string[]>([]);
+    const selectedTags=props.selected;
     const createTag = ()=>{
        const newTag=  window.prompt("新增的标签名：");
        if(newTag!==null){
@@ -74,9 +78,9 @@ const Tag:React.FC=()=> {
     };
     const toggle=(tag: string)=>{
         if(selectedTags.indexOf(tag)>=0){
-            setSelectedTags(selectedTags.filter(t=>t!==tag))
+            props.onChange(selectedTags.filter(t=>t!==tag));
         }else{
-            setSelectedTags([...selectedTags,tag])
+            props.onChange([...selectedTags,tag]);
         }
     };
     const ifSelected=(tag:string)=>{

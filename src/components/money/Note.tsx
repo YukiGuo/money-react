@@ -16,12 +16,16 @@ outline:none
 }
  }
 `;
-const Note:React.FC =() => {
-const [note,setNote]=useState<string>('');
+type Props={
+selected:string;
+onChange:(note: string)=>void
+}
+const Note:React.FC<Props> =(props) => {
+const note=props.selected;
 const refInput =useRef<HTMLInputElement>(null)
 const change =()=>{
 if( refInput.current!==null ){
-    setNote(refInput.current.value)
+props.onChange(refInput.current.value)
 }
 }
 return(

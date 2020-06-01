@@ -28,9 +28,13 @@ background: #333;
 }
 }
 `;
-const Catalog:React.FC=()=> {
-    const catalogHash={'+':'支出', '-':'收入'};
-    const[catalog,setCatalog]=useState<string>('-');
+type Props={
+    selected:'+'|'-';
+    onChange:(catalog:'+'|'-')=>void
+}
+const Catalog:React.FC<Props>=(props)=> {
+    const catalogHash={ '+':'收入','-':'支出'};
+    const catalog =props.selected;
     const [catalogList]=useState<('+'|'-')[]>(['+','-']);
     return(
         <Wrapper>
@@ -38,7 +42,7 @@ const Catalog:React.FC=()=> {
             <span
                 key={t}
                 className={t===catalog?'selected':''}
-                onClick={()=>setCatalog(t)}
+                onClick={()=>props.onChange(t)}
             >
                 {catalogHash[t]}</span>
             )}
