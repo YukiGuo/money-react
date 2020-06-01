@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import { generateOutput } from './generateOutput';
 
 const PadWrapper = styled.div`
 margin-top: 6px;
@@ -30,49 +31,23 @@ const OutPut = styled.div`
 `;
 
 function NumberPad() {
-    const [output, setOutput] = useState<string>('0');
-
+    const [output, _setOutput] = useState<string>('0');
+    const setOutput=(output: string)=>{
+        if(output.length>16){
+        output=output.slice(0,16)
+    }else if(output.length===0){
+           output='0'
+        }
+        _setOutput(output)
+    };
     const x = (e: React.MouseEvent) => {
+        console.log(output.length);
         const text = (e.target as HTMLButtonElement).textContent;
      if (text===null) return;
-            switch (text) {
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                    if (output === '0') {
-                        setOutput(text);
-                    }else{
-                        setOutput(output+text)
-                    }
-                    break;
-                case '0':
-                    break;
-                case '.':
-                    if(output.indexOf('.')>=0){
-                        return;
-                    }else{
-                        setOutput(output+text)
-                    }
-                    break;
-                case '删除':
-                    if(output.length===1){
-                        setOutput('0');
-                    }else{
-                        setOutput(output.slice(0,-1));
-                    }
-                    break;
-                case'清空':
-                    setOutput('0');
-                case'ok':
-                    break;
-            }
-
+     if(text==='ok'){}
+     if(('0123456789.'.split('').concat(['清空','删除'])).indexOf(text)>=0){
+         setOutput(generateOutput(text,output))
+     }
     };
 
     return <PadWrapper>
