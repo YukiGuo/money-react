@@ -36,6 +36,7 @@ const Catalog:React.FC=()=> {
         <Wrapper>
             {catalogList.map(t=>
             <span
+                key={t}
                 className={t===catalog?'selected':''}
                 onClick={()=>setCatalog(t)}
             >
