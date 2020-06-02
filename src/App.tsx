@@ -11,21 +11,25 @@ import Money from './view/Money';
 import Tags from './view/Tags';
 import Bill from './view/Bill';
 import Statistics from './view/Statistics';
+import {TagEdict} from './view/TagEdict';
 
 function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/money">
+                <Route path="/money" exact>
                     <Money/>
                 </Route>
-                <Route path="/tags">
+                <Route path="/tags" exact>
                     <Tags/>
                 </Route>
-                <Route path="/statistics">
+                <Route path="/tags/:id" exact>
+                    <TagEdict/>
+                </Route>
+                <Route path="/statistics" exact>
                     <Statistics/>
                 </Route>
-                <Route path="/bill">
+                <Route path="/bill" exact>
                     <Bill/>
                 </Route>
                 <Redirect exact from='/' to='/money'/>

@@ -3,11 +3,14 @@ import React from 'react';
 import {iconList, tagArray} from '../components/iconData';
 import Icon from '../components/Icon';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
+import {Button} from '../components/Button';
 const Label =styled.div`
       background-color: #fff;
       color: #999999;
             > .tagWrap {
-                text-decoration: none;
+                >a{
+                 text-decoration: none;
                 display: flex;
                 justify-content: space-between;
                 min-height: 30px;
@@ -20,21 +23,11 @@ const Label =styled.div`
                     margin-right: auto;
                     margin-left: 16px;
                 }
+                 }
             }
             >.createTagWrapper{
             display: flex;
             justify-content: center;
-          >.createTag {
-          font-size: 14px;
-        height: 40px;
-        border: none;
-        background-color: #bbb;
-        text-align: center;
-        padding: 0 16px;
-        color: #fff;
-        border-radius: 5px; 
-        margin-top: 32px; 
-        }
         }
 `;
 const Tags = () => {
@@ -43,14 +36,15 @@ const Tags = () => {
             <Label>
                 {tagArray.map(t =>
                         <div key={t.id} className="tagWrap">
+                            <Link to={'./tags/'+t.id}>
                             <Icon name={t.icon}/>
                             <span className="oneLine">{t.name}</span>
-                             <Icon name="arrowright"/>
+                            <Icon name="arrowright"/>
+                            </Link>
                         </div>
                 )}
                 <div className="createTagWrapper">
-                <button className="createTag">新建标签
-                </button>
+                <Button>新建标签</Button>
                 </div>
             </Label>
         </Layout>
