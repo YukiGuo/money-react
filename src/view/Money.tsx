@@ -9,30 +9,31 @@ function Money() {
     type Catalog = '+' | '-'
     const [selected, setSelected] = useState({
         tag: [] as string[],
-        note:'',
+        note: '',
         amount: 0,
         catalog: '-' as Catalog,
-}
-)
-    ;
+    });
+    const onChange = (obj: Partial<typeof selected>) => {
+        setSelected({...selected, ...obj});
+    };
     return (
         <Layout>
             {selected.note}
             <Tag
                 selected={selected.tag}
-             onChange={(tag)=>{setSelected({... selected,tag})}}
+                onChange={(tag)=>onChange({tag})}
             />
             <Note
                 selected={selected.note}
-                onChange={(note)=>{setSelected({... selected,note})}}
+                onChange={(note)=>onChange({note})}
             />
             <Catalog
                 selected={selected.catalog}
-                onChange={(catalog)=>{setSelected({... selected,catalog})}}
+                onChange={(catalog)=>onChange({catalog })}
             />
             <NumberPad
                 selected={selected.amount}
-                onChange={(amount)=>{setSelected({... selected,amount})}}
+                onChange={(amount)=>onChange({amount})}
             />
         </Layout>
     );
