@@ -44,7 +44,7 @@ const Tags = () => {
                 {tagArray.map(t =>
                         <div key={t.id} className="tagWrap">
                             <Icon name={t.icon}/>
-                            <span>{t.name}</span>
+                            <span className="oneLine">{t.name}</span>
                              <Icon name="arrowright"/>
                         </div>
                 )}
